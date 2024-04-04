@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "507597712389",
+    "project_id": "getsetfit-b20ca",
+    "storage_bucket": "getsetfit-b20ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507597712389:android:095d3c453dcc834ccc006c",
+        "android_client_info": {
+          "package_name": "com.example.getsetfit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0EZgm8vCOPVIjt9AaUVE5LSfsSLZXgzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
