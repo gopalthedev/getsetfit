@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:getsetfit/pages/beginnerRoutine.dart';
 
 class CardModel extends StatefulWidget {
-  const CardModel({super.key});
+  const CardModel({super.key, required this.goto});
+
+  final Widget goto;
 
   @override
   State<CardModel> createState() => _CardModelState();
@@ -15,7 +17,7 @@ class _CardModelState extends State<CardModel> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => BeginnerRoutine()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => widget.goto));
       },
       child: SizedBox(
         height: 200,

@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getsetfit/Earn/earn.dart';
@@ -29,6 +30,8 @@ class _MainPageState extends State<MainPage> {
       _selectedIndex = i;
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

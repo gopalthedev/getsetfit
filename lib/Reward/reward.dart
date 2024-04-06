@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-double mycoins = 0.0;
+
+import '../Explore/explore.dart';
 
 class Reward extends StatefulWidget {
   const Reward({super.key});
@@ -9,6 +12,16 @@ class Reward extends StatefulWidget {
 }
 
 class _RewardState extends State<Reward> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseFirestore.instance.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) {
+      myCoins = value['coins'];
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +63,14 @@ class _RewardState extends State<Reward> {
                         color: Colors.yellow.shade200,
                         borderRadius: BorderRadius.circular(24)
                     ),
-                    child: Center(child: Text("$mycoins", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 30),)),
+                    child: Center(child: Text("$myCoins", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 30),)),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 100,),
+              OutlinedButton(onPressed:(){
+                FirebaseAuth.instance.signOut();
+              } , child: Text("Sign Out"))
             ],
           ),
         ),

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getsetfit/Explore/explore.dart';
 import 'dart:async';
@@ -54,8 +56,10 @@ class _StepCalculatorState extends State<StepCalculator> {
     print(event);
     setState(() {
       _stepCount = event.steps.toInt() - _savedStepCount;
-        mycoins += 0.2;
-        dailyProgress++;
+      dailyProgress++;
+      FirebaseFirestore.instance.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).set({
+        'coins' : myCoins + dailyProgress
+      });
       if (_stepCount < 0) {
         // Upon device reboot, pedometer resets. When this happens, the saved counter must be reset as well.
         _savedStepCount = 0;

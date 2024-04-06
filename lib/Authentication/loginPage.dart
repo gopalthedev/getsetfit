@@ -1,8 +1,12 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getsetfit/Authentication/signup.dart';
+import 'package:getsetfit/models/userData.dart';
 import 'package:getsetfit/systemvalues.dart';
+
+UserModel? globalUser;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,7 +17,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   AssetImage logo = const AssetImage("asset/getsetfit.jpg");
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -43,7 +46,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future loginWithGoogle() async {
-    await FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider());
+    await FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider()).then((value){
+      var userObj = value;
+        globalUser = UserModel(userObj.user?.email, userObj.user?.displayName, userObj.user?.photoURL);
+    });
   }
 
   Future loginWithFaceBook() async {

@@ -8,16 +8,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:getsetfit/Authentication/loginPage.dart';
 import 'package:getsetfit/models/CardModel.dart';
 import 'package:getsetfit/models/SweatSessions.dart';
 import 'package:getsetfit/models/stepCalculator.dart';
+import 'package:getsetfit/pages/adduserDetails.dart';
 import 'package:getsetfit/pages/pose_detection.dart';
+import 'package:getsetfit/workouts/workoutlist.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../models/fitnessCategory.dart';
 import '../systemvalues.dart';
 import '../workoutTracker/pushUpTracker.dart';
 import '../workoutTracker/weightLifting.dart';
+import '../workoutTracker/workoutPages.dart';
 
 
 double dailyProgress = 0;
@@ -25,6 +29,8 @@ double dailyGoal = 1;
 int stepGoal = 0;
 int pushUpGoal = 0;
 int squatsGoal = 0;
+double myCoins = 0;
+
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -35,7 +41,7 @@ class Explore extends StatefulWidget {
 class _ExploreState extends State<Explore> {
 
   String? userImage;
-  String userName = "User";
+  String? userName;
 
 
   final user = FirebaseAuth.instance.currentUser!;
@@ -133,8 +139,11 @@ class _ExploreState extends State<Explore> {
       }
       Map<String, dynamic> map = value.data()!;
       setState(() {
-        userName = map['name'];
-        userImage = map['image'];
+          userName = map['name'];
+          if(userName  == null){
+            userName = globalUser!.name;
+          }
+          userImage = map['image'];
       });
     });
   }
@@ -236,11 +245,15 @@ class _ExploreState extends State<Explore> {
                         style: TextStyle(color: Colors.black, fontSize: 24),
                       ),
                       Text(
-                        userName,
+                        userName.toString(),
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       )
                     ],
-                  )
+                  ),
+                  const Spacer(),
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddDetails()));
+                  }, icon: Icon(Icons.format_align_left_rounded))
                 ],
               ),
               const SizedBox(
@@ -263,7 +276,7 @@ class _ExploreState extends State<Explore> {
                       ),
                       const SizedBox(height: 10,),
                       Text(
-                        "Your are ${100 - ((dailyProgress/dailyGoal)*100)}% closer to your daily goal",
+                        "Your are ${(100 - ((dailyProgress/dailyGoal)*100).round())}% closer to your daily goal",
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       const SizedBox(height: 10,),
@@ -353,8 +366,8 @@ class _ExploreState extends State<Explore> {
                     height: 200,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => CardModel(),
-                      itemCount: 2,
+                      itemBuilder: (context, index) => CardModel(goto: exploreWorkouts[index],),
+                      itemCount: exploreWorkouts.length,
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
@@ -397,8 +410,8 @@ class _ExploreState extends State<Explore> {
                     height: 200,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => SweatSession(),
-                      itemCount: 2,
+                      itemBuilder: (context, index) => SweatSession(goto: sweetSessions[index],),
+                      itemCount: sweetSessions.length,
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
