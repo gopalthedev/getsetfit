@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getsetfit/models/activitesData.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async'; // Import Dart async library for Timer
 import 'dart:math' as math;
@@ -69,6 +70,7 @@ class _RopeCounterState extends State<RopeCounter> {
         currentTime - _lastJumpTime > minTimeBetweenJumps) {
       setState(() {
         _jumpCount++;
+        MyActivities.ropeJumps = _jumpCount.toDouble();
         dailyProgress++;
         FirebaseFirestore.instance.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).set({
           'coins' : myCoins + dailyProgress

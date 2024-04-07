@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getsetfit/Explore/explore.dart';
+import 'package:getsetfit/models/activitesData.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -65,6 +66,7 @@ class _StepCalculatorState extends State<StepCalculator> {
         _savedStepCount = 0;
         storeStepCounter();
         _stepCount = event.steps.toInt() - _savedStepCount;
+        MyActivities.steps = _stepCount.toDouble();
         //TODO: save this in some storage
       }
       _steps = _stepCount.toString();

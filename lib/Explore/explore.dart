@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:getsetfit/Authentication/loginPage.dart';
 import 'package:getsetfit/models/CardModel.dart';
 import 'package:getsetfit/models/SweatSessions.dart';
+import 'package:getsetfit/models/activitesData.dart';
 import 'package:getsetfit/models/stepCalculator.dart';
 import 'package:getsetfit/pages/adduserDetails.dart';
 import 'package:getsetfit/pages/pose_detection.dart';
@@ -31,6 +32,7 @@ int pushUpGoal = 0;
 int squatsGoal = 0;
 double myCoins = 0;
 
+MyActivities myData = MyActivities();
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -45,7 +47,6 @@ class _ExploreState extends State<Explore> {
 
 
   final user = FirebaseAuth.instance.currentUser!;
-
   File? _image;
   String? profileImage;
   final picker = ImagePicker();
@@ -380,8 +381,8 @@ class _ExploreState extends State<Explore> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Quick sweat sessions",
+                       Text(
+                        "Hello ${greeting()} mam",
                         style: TextStyle(fontSize: 18),
                       ),
                       Row(

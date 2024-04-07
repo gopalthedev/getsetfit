@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getsetfit/pages/history.dart';
 
 import '../Explore/explore.dart';
 
@@ -67,10 +69,23 @@ class _RewardState extends State<Reward> {
                   ),
                 ],
               ),
+              const SizedBox(height: 20,),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => FitnessHistory()));
+                },
+                child: SizedBox(
+                  height: 100,
+                  width: 340,
+                  child: Card(
+                    child: Center(child: Text("Your History", style: TextStyle(fontSize: 24),)),
+                  ),
+                ),
+              ),
               const SizedBox(height: 100,),
               OutlinedButton(onPressed:(){
                 FirebaseAuth.instance.signOut();
-              } , child: Text("Sign Out"))
+              } , child: Text("Sign Out")),
             ],
           ),
         ),
