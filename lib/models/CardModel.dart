@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:getsetfit/pages/beginnerRoutine.dart';
 
 class CardModel extends StatefulWidget {
-  const CardModel({super.key, required this.goto});
+  const CardModel({super.key, required this.goto, required this.title, required this.category, required this.image});
 
   final Widget goto;
+  final String title;
+  final String category;
+  final AssetImage image;
 
   @override
   State<CardModel> createState() => _CardModelState();
 }
 
 class _CardModelState extends State<CardModel> {
-  AssetImage cardImage = new AssetImage("asset/streching.jpg");
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class _CardModelState extends State<CardModel> {
           child: Stack(
             children: [
               Image(
-                image: cardImage,
+                image: widget.image,
                 fit: BoxFit.cover,
                 height: double.maxFinite,
                 width: double.maxFinite,
@@ -70,10 +72,10 @@ class _CardModelState extends State<CardModel> {
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(24),
                             topLeft: Radius.circular(24))),
-                    child: const ListTile(
+                    child:  ListTile(
                       dense: false,
-                      title: Text("Beginner's HIIT routine"),
-                      subtitle: Text("Fitness enthusiast"),
+                      title: Text(widget.title),
+                      subtitle: Text(widget.category),
                     ),
                   )
                 ],

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:getsetfit/workoutTracker/pushUpTracker.dart';
 
 class SweatSession extends StatefulWidget {
-  const SweatSession({super.key, required this.goto});
+  const SweatSession({super.key, required this.goto, required this.image});
   final Widget goto;
+  final NetworkImage image;
   @override
   State<SweatSession> createState() => _SweatSessionState();
 }
@@ -27,7 +28,7 @@ class _SweatSessionState extends State<SweatSession> {
           child: Stack(
             children: [
               Image(
-                image: cardImage,
+                image: widget.image,
                 fit: BoxFit.cover,
                 height: double.maxFinite,
                 width: double.maxFinite,

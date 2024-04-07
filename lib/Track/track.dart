@@ -27,7 +27,6 @@ class _TrackState extends State<Track> {
             "Track you fitness",
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ),

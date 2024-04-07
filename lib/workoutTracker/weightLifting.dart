@@ -139,7 +139,7 @@ class _WeightLiftingState extends State<WeightLifting> {
               ListTile(
                 title: Text("Your last seesion"),
                 subtitle: Text(
-                    "PushUps : $lastSessionData in time :" + lastSessiontime),
+                    "Weigth Lifting : $lastSessionData in time :" + lastSessiontime),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(24),
@@ -150,7 +150,7 @@ class _WeightLiftingState extends State<WeightLifting> {
                 ),
               ),
               SizedBox(height:10,),
-              Text("Keep your phone below your chest", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
+              Text("Keep mobile in your pocket", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
             ],
           ),
         ),

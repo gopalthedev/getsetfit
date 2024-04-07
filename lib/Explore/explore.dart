@@ -366,7 +366,7 @@ class _ExploreState extends State<Explore> {
                     height: 200,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => CardModel(goto: exploreWorkouts[index],),
+                      itemBuilder: (context, index) => CardModel(goto: exploreWorkouts[index][0], title: exploreWorkouts[index][1], category: exploreWorkouts[index][2], image: exploreWorkouts[index][3],),
                       itemCount: exploreWorkouts.length,
                       scrollDirection: Axis.horizontal,
                     ),
@@ -410,7 +410,7 @@ class _ExploreState extends State<Explore> {
                     height: 200,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => SweatSession(goto: sweetSessions[index],),
+                      itemBuilder: (context, index) => SweatSession(goto: sweetSessions[index][0], image: sweetSessions[index][1],),
                       itemCount: sweetSessions.length,
                       scrollDirection: Axis.horizontal,
                     ),

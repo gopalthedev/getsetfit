@@ -7,13 +7,13 @@ import '../pages/cycling.dart';
 import '../pages/fitnessCoaching.dart';
 import '../pages/running.dart';
 
-List<Widget> sweetSessions = [
-  FitnessCoach(),
+List<List<dynamic>> sweetSessions = [
+  [FitnessCoaching(), NetworkImage("https://img.freepik.com/free-photo/young-woman-pink-top-standing-with-coach_1157-32123.jpg?w=996")]
 ];
 
-List<Widget> exploreWorkouts = [
-  BeginnerRoutine(),
-  RopeCounter(),
-  Cycling(),
-  Running(),
+List<List<dynamic>>exploreWorkouts = [
+  [BeginnerRoutine(), "Begginer's HIIT routine", "category", AssetImage('asset/streching.jpg')],
+  [RopeCounter(), "Rope Jumping", "category", AssetImage('asset/ropeJump.jpg')],
+  [Cycling(), "Cycling", "category", AssetImage('asset/cycling.jpg')],
+  [Running(), "Running", "category", AssetImage('asset/running.jpg')]
 ];

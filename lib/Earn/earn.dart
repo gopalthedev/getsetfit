@@ -22,7 +22,6 @@ class _EarnState extends State<Earn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.shopping_cart),
         title: Center(child: Text("Redeem Your Coin")),
         backgroundColor: Colors.grey[50],
       ),
